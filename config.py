@@ -1,11 +1,12 @@
 import pygame
-from archivos import *
 import random
 
+#def configurar_timer(timer):
+    
 def obtener_valor_random():
     posicion_aleatoria = random.randint(-700, 2500)
-    while posicion_aleatoria >= 0 and posicion_aleatoria <= 1800:
-        posicion_aleatoria = random.randint(-700, 2500)
+    while posicion_aleatoria >= 0 and posicion_aleatoria <= ANCHO:
+        posicion_aleatoria = random.randint(-700, ANCHO + 700)
     return posicion_aleatoria
 
 def escribir_texto(pantalla, mensaje, altura, x, y):
@@ -16,8 +17,9 @@ def escribir_texto(pantalla, mensaje, altura, x, y):
     pantalla.blit(texto, texto_rect)
 
 def mostrar_textos(pantalla, puntos):
-    escribir_texto(pantalla, str('Puntos'),20, ANCHO / 2 + 500, 190)
-    escribir_texto(pantalla, str(puntos),20, 1652, 215)
+    escribir_texto(pantalla, 'Puntos', 20, ANCHO / 1.1 + 20, ALTO / 4.2)
+    escribir_texto(pantalla, str(puntos), 20, ANCHO / 1.1 + 20, ALTO / 3.7)
+    escribir_texto(pantalla, 'TIEMPO RESTANTE', 14, ANCHO / 2 + 80, ALTO / 4.2)
 
 def reescalar_imagenes(lista_imagenes, escala):
         for i in range(len(lista_imagenes)):
@@ -64,7 +66,6 @@ def verificar_colision(personaje, enemigos, pantalla, lados_piso):
         
         if personaje.personaje_muerto:
             enemigo.que_hace = 'quieto'
-
 
         if enemigo.vida < 0:
             enemigo.que_hace = 'muerto'
